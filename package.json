@@ -1,0 +1,23 @@
+{
+  "name": "create-graphweaver-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "bard": "ts-node --esm ./src/services/bard.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "googlebard": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.1",
+    "dotenv": "^16.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
