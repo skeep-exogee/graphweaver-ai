@@ -1,0 +1,14 @@
+{
+    "conversations": {
+        "rows": [
+            {
+                "id": "postgres-data-entity-0.0.25",
+                "c": "c_46ffafafd3439b41",
+                "r": "r_70618e6c40456761",
+                "rc": "rc_70618e6c40456a84",
+                "lastActive": 1684475397460
+            }
+        ],
+        "name": "conversations"
+    }
+}

@@ -1,4 +1,4 @@
-export const conversationId = "postgres-data-entity-0.0.20";
+export const conversationId = "postgres-data-entity-0.0.27";
 
 export type Prompt = {
   input: string;
@@ -233,27 +233,23 @@ export class Truck extends BaseEntity {
 `;
 
 const ac1 = `AC1: All properties are camel case.`;
-const ac2 = `AC2: Never include a constructor method in the class.`;
+const ac2 = `AC2: The class should never include a constructor method.`;
 const ac3 = `AC3: Always extend BaseEntity and make sure you import it.`;
 const ac4 = `AC4: Enums should be defined and exported above the class file using typescripts enum type.`;
 const ac5 = `AC5: If a custom type is used then it must be imported.`;
-const ac6 = `AC6: Make sure that you don't define any unused imports from "@mikro-orm/core".`;
-const acceptanceCriteria = `Here is some acceptance criteria I want you to follow for every class. ${ac1} ${ac2} ${ac3} ${ac4} ${ac5} ${ac6}`;
+const acceptanceCriteria = `\nHere are the requirements for when you create a data entity class: \n${ac1} \n${ac2} \n${ac3} \n${ac4} \n${ac5}`;
 
 export const askPrompt = (sql: string) =>
   `Your task is to create a GraphWeaver PostgreSQL data entity class using the acceptance criteria I told you about previously. For the following """${sql}""" I want you to respond to me in only JSON format with two keys a fileName and the fileBody. Note that the file name is kebab case and ends with the extension ".ts". Make sure that the JSON parses correctly not use of template literals. ${acceptanceCriteria}`;
 
 export const prompts: Prompt[] = [
   {
-    input: `I want you to act as a software developer. I will provide some specific information about a typescript class file, and it will be your job to come up with the structure of the file including all the correct types. Before you make any code changes I want to give you some context. Are you ready for me to teach you?`,
+    input: `I want you to act as a software developer. The first thing you need to learn is about GraphWeaver which is a Node Typescript module found at (https://github.com/exogee-technology/graphweaver). It allows developers to build GraphQL APIs easily. In order to build an API the developer has to create data entities that connect to the data source. In this example the data source is a postgresql database. Im including the SQL that generated the table here for you between the three double quotes """${jobSql}""". I have one more thing to teach you but first, Do you have any questions?`,
   },
   {
-    input: `The first thing you need to learn is about GraphWeaver this is Node Typescript module that allows developers to build GraphQL APIs. In order to build an API the developer has to create data entities that connect to the data source. In this example the data source is a postgresql database. Im including the SQL that generated the table here for you between the three double quotes """${jobSql}""". I have one more thing to teach you but first, Do you have any questions?`,
+    input: `The next thing you need to learn is about GraphWeaver is what a data entity looks like. Based off the previous SQL statement this is the data entity that was created between the three double quotes """${jobDataEntity}""". Use this format in all future classes that you create. Do you have any questions?`,
   },
   {
-    input: `The next thing you need to learn is about GraphWeaver is what a data entity looks like. Based off the previous SQL statement this is the data entity that was created between the three double quotes """${jobDataEntity}""". Do you have any questions?`,
-  },
-  {
-    input: `I'm going to ask you to create a new GraphWeaver PostgreSQL data entity class for me by giving you some SQL make sure that all the property names are camel case. ${acceptanceCriteria}, Do you have any questions?`,
+    input: askPrompt(jobSql),
   },
 ];
