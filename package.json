@@ -5,14 +5,16 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "ts-node ./src/index.ts",
-    "bard": "ts-node --esm ./src/services/bard.ts"
+    "start": "ts-node --esm ./src/index.ts",
+    "train": "ts-node --esm ./src/training/train.ts",
+    "pg": "ts-node --esm ./src/datasources/postgres.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "googlebard": "^1.0.5"
+    "googlebard": "^1.0.5",
+    "octokit": "^2.0.15"
   },
   "devDependencies": {
     "@types/node": "^20.2.1",
